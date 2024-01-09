@@ -1,0 +1,18 @@
+<smil>
+  <head>
+    <meta name="author" content="CPC MacCaption"/>
+    <layout>
+      <root-layout width="360" height="344" background-color="black"/>
+      <region id="video" width="320" height="240" left="20" top="20" fit="fill"/>
+      <region id="bottom" width="320" height="64" left="20" top="260"/>
+    </layout>
+  </head>
+  <body>
+    <par>
+      <video src="video.rm" region="video"/>
+      <seq>
+        <textstream src="/CPC/Website%20Changes%202014/Website%20Content/Revised/Downloads/Web%20Files/Real%20Text.rt" region="bottom" />
+      </seq>
+    </par>
+  </body>
+</smil>

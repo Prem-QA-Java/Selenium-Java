@@ -1,0 +1,52 @@
+﻿00:00:00.000,00:00:03.067
+Pop-on captions,
+pop on and off the screen.
+
+00:00:03.067,00:00:06.100
+They are used with programs
+with multiple characters.
+
+00:00:06.100,00:00:08.467
+They can be
+strategically placed
+
+00:00:08.467,00:00:11.167
+as to indicate to the viewer
+who is speaking.
+
+00:00:11.167,00:00:12.400
+For example,
+
+00:00:12.400,00:00:13.633
+if the person
+is on the left side
+
+00:00:13.633,00:00:14.733
+of the screen
+
+00:00:14.733,00:00:16.033
+the pop-on captions
+would appear
+
+00:00:16.033,00:00:17.600
+on the left side.
+
+00:00:17.600,00:00:18.967
+If they are
+in the middle,
+
+00:00:18.967,00:00:20.767
+the caption would appear
+in the middle.
+
+00:00:20.767,00:00:22.333
+Or, if they are on
+the right side
+
+00:00:22.333,00:00:23.567
+of the screen
+
+00:00:23.567,00:00:25.533
+caption would pop-on
+the right side.
+
