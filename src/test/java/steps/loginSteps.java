@@ -2,10 +2,11 @@ package steps;
 
 import org.openqa.selenium.By;
 
-import utilities.hooks;
+import utilities.*;
 
 public class loginSteps {
-
+	
+	asserts asserts = new asserts();
 	hooks hooks = new hooks();
 	
 	By username = By.cssSelector("[placeholder='Username']");
@@ -29,14 +30,14 @@ public class loginSteps {
 	}
 	
 	public void logoutvisiable() {
-		hooks.aTrue(logout);
+		asserts.aTrue(logout);
 	}
 	
 	public void errormsg(String msg) {
-		hooks.aTrue(errormsgbutton, msg);
+		asserts.aTrue(errormsgbutton, msg);
 	}
 	
 	public void clickcross() {
-		hooks.click(errormsgbutton);
+		asserts.click(errormsgbutton);
 	}
 }

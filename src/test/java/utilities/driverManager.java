@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import runner.Runner;
+import runner.testNGRunner;
 
 public class driverManager {
 
@@ -21,36 +21,29 @@ public class driverManager {
 		return d.get();
 	}
 
-	public void setDriver(WebDriver driver) {
-		d.set(driver);
-	}
-
-	public void driver(String Browser) throws Throwable {
+	public driverManager(String Browser) throws Throwable {
 		WebDriver dr = null;
 		if (Browser.equals("edge")) {
 			WebDriverManager.edgedriver().setup();
-			if (Boolean.parseBoolean(Runner.headLess)) {
+			if (Boolean.parseBoolean(testNGRunner.headLess)) {
 				EdgeOptions options = new EdgeOptions();
+				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("headLess");
 				dr = new EdgeDriver(options);
-			} else if (Boolean.parseBoolean(Runner.headLess)) {
-				dr = new EdgeDriver();
 			} else {
-				dr = new EdgeDriver();
+				EdgeOptions options = new EdgeOptions();
+				options.addArguments("--remote-allow-origins=*");
+				dr = new EdgeDriver(options);
 			}
 			dr.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
 		}
 
 		else if (Browser.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			if (Boolean.parseBoolean("true")) {
+			if (Boolean.parseBoolean(testNGRunner.headLess)) {
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--remote-allow-origins=*");
 				options.addArguments("headLess");
-				dr = new ChromeDriver(options);
-			} else if (Boolean.parseBoolean(Runner.headLess)) {
-				ChromeOptions options = new ChromeOptions();
-				options.addArguments("--remote-allow-origins=*");
 				dr = new ChromeDriver(options);
 			} else {
 				ChromeOptions options = new ChromeOptions();
@@ -62,20 +55,18 @@ public class driverManager {
 
 		else if (Browser.equals("fire")) {
 			WebDriverManager.firefoxdriver().setup();
-			if (Boolean.parseBoolean(Runner.headLess)) {
+			if (Boolean.parseBoolean(testNGRunner.headLess)) {
 				FirefoxOptions hl = new FirefoxOptions();
 				hl.addArguments("--headLess");
 				hl.setCapability("marionette", true);
 				dr = new FirefoxDriver(hl);
-			} else if (Boolean.parseBoolean(Runner.headLess)) {
-				dr = new FirefoxDriver();
 			} else {
 				dr = new FirefoxDriver();
 			}
 			dr.manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
 		}
 
-		driverManager.d.set(dr);
+		d.set(dr);
 
 	}
 

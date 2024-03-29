@@ -27,11 +27,17 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+
 public class hooks {
 
+	asserts asserts = new asserts();
 	public static final String VALUE = "value";
 
-	private WebDriver d = new driverManager().getDriver();
+	private WebDriver d = driverManager.getDriver();
 	SoftAssert sa = new SoftAssert();
 
 	public List<WebElement> webElementsList(By locator) {
@@ -178,103 +184,41 @@ public class hooks {
 			return false;
 		}
 	}
+	
+	public void windows(String name) {
+		d.switchTo().frame(name);
+	}
 
+	public void refresh() {
+		d.navigate().refresh();
+	}
+	
+	public void back() {
+		d.navigate().back();
+	}
+	
+	public void forward() {
+		d.navigate().forward();
+	}
 	public void log(String string) {
 		Logger log = Logger.getLogger(driverManager.class.getName());
 		log.info(string);
 	}
-
-	public void aTrue(By locator, String string) {
-		sa.assertTrue(getText(locator).contains(string));
+	
+	public void info(String message) {
+		ExtentCucumberAdapter.getCurrentStep().log(Status.INFO, MarkupHelper.createLabel(message, ExtentColor.WHITE));
 	}
 	
-	public void aTrue(String string, By locator) {
-		sa.assertTrue(string.contains(getText(locator)));
-	}
-
-	public void aTrue(WebElement element, String string) {
-		sa.assertTrue(getText(element).contains(string));
+	public void pass(String message) {
+		ExtentCucumberAdapter.getCurrentStep().log(Status.PASS, MarkupHelper.createLabel(message, ExtentColor.WHITE));
 	}
 	
-	public void aTrue(String string, WebElement element) {
-		sa.assertTrue(string.contains(getText(element)));
-	}
-
-	public void aTrue(By locator, String s, String string) {
-		sa.assertTrue(getAtt(locator, s).contains(string));
-	}
-
-	public void aTrue(By locator, String s, String string, String strin) {
-		sa.assertTrue(getAttCss(locator, s).contains(string));
-	}
-
-	public void aTrue(By locator) {
-		sa.assertTrue(find(locator).isDisplayed());
-	}
-
-	public void aTrue(boolean b) {
-		sa.assertTrue(b);
-	}
-
-	public void aFalse(By locator, String string) {
-		sa.assertFalse(getText(locator).contains(string));
+	public void fail(String message) {
+		ExtentCucumberAdapter.getCurrentStep().log(Status.FAIL, MarkupHelper.createLabel(message, ExtentColor.WHITE));
 	}
 	
-	public void aFalse(String string, By locator) {
-		sa.assertFalse(string.contains(getText(locator)));
-	}
-
-	public void aFalse(WebElement element, String string) {
-		sa.assertFalse(getText(element).contains(string));
-	}
-	
-	public void aFalse(String string, WebElement element) {
-		sa.assertFalse(string.contains(getText(element)));
-	}
-
-	public void aFalse(By locator, String s, String string) {
-		sa.assertFalse(getAtt(locator, s).contains(string));
-	}
-
-	public void aFalse(By locator, String s, String string, String strin) {
-		sa.assertFalse(getAttCss(locator, s).contains(string));
-	}
-
-	public void aFalse(By locator) {
-		sa.assertFalse(find(locator).isDisplayed());
-	}
-
-	public void aFalse(boolean b) {
-		sa.assertFalse(b);
-	}
-	
-	public void aFalse(String prop, String js) {
-		sa.assertFalse(prop.contains(js));
-	}
-	
-	public void equal(By locator, String string) {
-		sa.assertEquals(getText(locator), string);
-	}
-
-	public void equal(WebElement web, String string) {
-		sa.assertEquals(getText(web), string);
-	}
-
-	public void equal(By locator, int number) {
-		sa.assertEquals(Integer.parseInt(getText(locator)), number);
-	}
-
-	public void equal(String actual, String expected) {
-		sa.assertEquals(actual, expected);
-	}
-	
-	
-	public void equal(String[] beforesort, String[] aftersort) {
-		sa.assertEquals(beforesort, aftersort);
-	}
-
-	public void all() {
-		sa.assertAll();
+	public void skip(String message) {
+		ExtentCucumberAdapter.getCurrentStep().log(Status.SKIP, MarkupHelper.createLabel(message, ExtentColor.WHITE));
 	}
 
 	public void newtab() {
@@ -283,13 +227,6 @@ public class hooks {
 
 	public void url(String string) {
 		d.get(string);
-	}
-
-	public void cache() {
-		newtab();
-		url("http://preprodcmsaws.vodafoneplay.in:8080/api/operations/clearCache");
-		equal(By.xpath("/pre"),
-				"{\"message\":\"Cache cleared successfully\",\"status\":\"SUCCESS\",\"code\":200,\"recordsCount\":0,\"position\":0}");
 	}
 
 	public String js(String string) {
