@@ -3,7 +3,7 @@
 	<configuration>
 		<!--  report theme  -->
 		<!--  standard, dark  -->
-		<theme>standard</theme>
+		<theme>dark</theme>
 		<!--  document encoding  -->
 		<!--  defaults to UTF-8  -->
 		<encoding>UTF-8</encoding>
@@ -12,20 +12,19 @@
 		<!--  defaults to https  -->
 		<protocol>https</protocol>
 		<!--  title of the document  -->
-		<documentTitle>PaaS CMS - Extent Reports</documentTitle>
+		<documentTitle>Extent Reports</documentTitle>
 		<!--  report name - displayed at top-nav  -->
 		<reportName align="center">
 			<![CDATA[
+			<message>Automated Report</message>
 			<img src="https://yuppstatic.akamaized.net/yupptv/roku/images/yupptv_white.svg" style="position:absolute;left:-200%;margin:-10px;height:30px"/>
-			<img src="	https://paasqa-cms.myplex.com/platform_assets/images/apalya_mark_light-01.png" style="position:absolute;left:-613%;margin:700px;height:30px;width:10%"/>
-			<message>PaaS CMS Automation</message>
 			]]>
  		</reportName> 
 		<!-- timestamp format -->
 		<timeStampFormat>HH:mm:ss dd-MM-yyyy</timeStampFormat>
 		<!--  location of charts in the test view  -->
 		<!--  top, bottom  -->
-		<testViewChartLocation>bottom</testViewChartLocation>
+		<testViewChartLocation>top</testViewChartLocation>
 		<!--  custom javascript  -->
 		<scripts>
 			<![CDATA[ $(document).ready(function(){}

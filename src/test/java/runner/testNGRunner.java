@@ -23,9 +23,8 @@ import utilities.base;
 import utilities.driverManager;
 import utilities.hooks;
 
-public class Runner {
+public class testNGRunner {
 
-	String version = System.getProperty("cmsVersion");
 	public static String headLess = System.getProperty("headLess");
 
 	@CucumberOptions(features = { "src/test/resources/featuresPage" }, glue = { "pages", "utilities" }, plugin = {
@@ -55,15 +54,20 @@ public class Runner {
 				log.info("@@@@@@@@@@@@@@@@@@@@@@@@@ Running Drivers in headless mode");
 				ExtentService.getInstance()
 						.addTestRunnerOutput("@@@@@@@@@@@@@@@@@@@@@@@@@ Running Drivers in headless mode\t");
-			} else if (Boolean.parseBoolean(headLess)) {
+			} else {
 				log.info("@@@@@@@@@@@@@@@@@@@@@@@@@ Running Driver in normal mode");
 				ExtentService.getInstance()
 						.addTestRunnerOutput("@@@@@@@@@@@@@@@@@@@@@@@@@ Running Driver in normal mode\t");
 			}
 			ExtentService.getInstance().setSystemInfo("OS", System.getProperty("os.name"));
 			ExtentService.getInstance().setSystemInfo("OS Version", System.getProperty("os.version"));
-			ExtentService.getInstance().setSystemInfo("User", System.getProperty("user.name"));
+			ExtentService.getInstance().setSystemInfo("User Name", System.getProperty("user.name"));
 			ExtentService.getInstance().setSystemInfo("Java Version", System.getProperty("java.version"));
+			try {
+				ExtentService.getInstance().setSystemInfo("System Name / IP", InetAddress.getLocalHost().toString());
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
 		}
 
 		@Parameters({ "Browser" })
@@ -83,12 +87,6 @@ public class Runner {
 
 			ExtentService.getInstance().setSystemInfo("Browser name", cap.getBrowserName());
 			ExtentService.getInstance().setSystemInfo("Browser version", cap.getBrowserVersion());
-			ExtentService.getInstance().setSystemInfo("User Name", System.getProperty("user.name"));
-			try {
-				ExtentService.getInstance().setSystemInfo("System Name / IP", InetAddress.getLocalHost().toString());
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			}
 			ExtentService.getInstance()
 					.addTestRunnerOutput("@@@@@@@@@@@@@@@@@@@@@@@@@ Runned in Browser: " + browsername);
 		}

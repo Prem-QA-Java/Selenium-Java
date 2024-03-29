@@ -2,12 +2,12 @@ package steps;
 
 import org.openqa.selenium.By;
 
+import utilities.asserts;
 import utilities.driverManager;
-import utilities.hooks;
 
 public class homePageStep {
 	
-	hooks hooks = new hooks();
+	asserts asserts = new asserts();
 	
 	By logo = By.className("login_logo");
 	By username = By.cssSelector("[placeholder='Username']");
@@ -20,16 +20,16 @@ public class homePageStep {
 	}
 	
 	public void vaildCompamyNmae() {
-		hooks.aTrue(logo);
+		asserts.aTrue(logo);
 	}
 	
 	public void vaildusernamenadpassword() {
-		hooks.aTrue(username);
-		hooks.aTrue(password);
+		asserts.aTrue(username);
+		asserts.aTrue(password);
 	}
 	
 	public void usersandpassword() {
-		hooks.aTrue(accpectedusers);
-		hooks.aTrue(passwordforallusers);
+		asserts.aTrue(accpectedusers);
+		asserts.aTrue(passwordforallusers);
 	}
 }

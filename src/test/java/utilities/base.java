@@ -27,7 +27,7 @@ import io.cucumber.java.Scenario;
 public class base extends hooks {
 	
 	public void lanch(String Browser) throws Throwable {
-		new driverManager().driver(Browser);
+		new driverManager(Browser);
 	}
 	
 	public static String prop(String Key) {

@@ -6,15 +6,24 @@
 		<listener class-name="runner.RetryListener" />
 	</listeners>
 
-	<!-- <test name="Edge"> <parameter name="Browser" value="edge"></parameter> 
-		<classes> <class name="com.apalya.runner.Runner"></class> </classes> </test> -->
+	<test name="Edge">
+		<parameter name="Browser" value="edge"></parameter>
+		<classes>
+			<class name="runner.testNGRunner"></class>
+		</classes>
+	</test>
 
 	<test name="chrome">
 		<parameter name="Browser" value="chrome"></parameter>
 		<classes>
-			<class name="runner.Runner"></class>
+			<class name="runner.testNGRunner"></class>
 		</classes>
 	</test>
-	<!-- <test name="fire"> <parameter name="Browser" value="fire"></parameter> 
-		<classes> <class name="com.apalya.runner.Runner"></class> </classes> </test> -->
+	<test name="fire">
+		<parameter name="Browser" value="fire"></parameter>
+		<classes>
+			<class name="runner.testNGRunner"></class>
+		</classes>
+	</test>
+	
 </suite>
