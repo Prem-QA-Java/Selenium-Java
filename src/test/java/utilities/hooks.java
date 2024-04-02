@@ -22,10 +22,18 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
+
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
+import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.model.Media;
 
 public class hooks {
 
@@ -77,6 +85,10 @@ public class hooks {
 		return wait;
 	}
 	
+	public void action() {
+		Actions ac = new Actions(d);
+		ac.click().perform();
+	}
 	
 	public  void alertpresent() {
 		WebDriverWait wait = new WebDriverWait(d, Duration.ofSeconds(10));
@@ -182,6 +194,18 @@ public class hooks {
 	public void log(String string) {
 		Logger log = Logger.getLogger(driverManager.class.getName());
 		log.info(string);
+	}
+
+	public void info(String message) {
+		ExtentCucumberAdapter.getCurrentStep().log(Status.INFO, MarkupHelper.createLabel(message, ExtentColor.WHITE));
+	}
+
+	public void fail(String message) {
+		ExtentCucumberAdapter.getCurrentStep().log(Status.FAIL, MarkupHelper.createLabel(message, ExtentColor.WHITE));
+	}
+
+	public void skip(String message) {
+		ExtentCucumberAdapter.getCurrentStep().log(Status.SKIP, MarkupHelper.createLabel(message, ExtentColor.WHITE));
 	}
 
 	public void aTrue(By locator, String string) {
@@ -308,7 +332,7 @@ public class hooks {
 	}
 	
 
-	public void upload1(String filepath) throws Throwable {
+	public void robotUpload(String filepath) throws Throwable {
 		pause(1000);
 		StringSelection ss = new StringSelection(System.getProperty("user.dir") + filepath);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
